@@ -217,3 +217,7 @@
 	.modal form label {
 		font-weight: normal;
 	}	
+
+	body a:hover{
+		text-decoration: none;
+	}
