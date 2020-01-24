@@ -53,7 +53,7 @@
                         <th>Adress</th>
 						<th>Max. students allowed</th>
                         <th>Courses yearly fee</th>
-                        <th>Action</th>
+						<th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,11 +73,10 @@
 									<td><?php echo $row['address']; ?></td>
 									<td><?php echo $row['max_students_alw'];  ?></td>
 									<td><?php echo $row['courses_fee'];  ?></td>
-
-									<td>							
-									<button type="button" name="edit" class="btn btn-success editbtn"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> </a>
-									<button type="button" name="deleterow" class="btn btn-success deleterow"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i> </a>
-                        			</td>
+							
+									<td colspan="2"><button type="button" name="edit" class="btn btn-success editbtn"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> </a>
+									<button type="button" name="deleterow" class="btn btn-success deleterow"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i> </a> </td>
+                        			
 							</tr>
 							<?php endwhile; ?>
 						
@@ -152,11 +151,11 @@
 							<input type="text" id="adress2" name="adress2" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Birth Date</label>
-							<input type="max_students2" id="max_students2" name="max_students2" required>
+							<label>Maximum student allowed</label>
+							<input type="number" id="max_students2" name="max_students2" required>
 						</div>
 						<div class="form-group">
-							<label>School</label>
+							<label>Courses yearly fee</label>
 							<input type="number" id="fee2" name="fee2" class="form-control" required>
 						</div>					
 					</div>

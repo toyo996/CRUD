@@ -14,18 +14,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css">
 </style>
-<script type="text/javascript">
 
-</script>
+<script type="text/javascript"></script>
 </head>
-<body>
-
-<?php if (isset($_SESSION['message'])): ?>
-        <p><?php echo $_SESSION['message'];
-        unset ($_SESSION['message']);
-		endif;
-		?>
-	
+<body>	
 
 <td></td>
 
@@ -52,7 +44,7 @@
                         <th>Last Name</th>
 						<th>Birthdate</th>
                         <th>School</th>
-                        <th>Action</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,69 +56,25 @@
     						$result = $con->query("SELECT * FROM students");
 							while($row=mysqli_fetch_array($result)):
 						?>
-							<tr onclick="window.location.a href='#viewModal';">
-									<td>
-									<?php echo $row['id']; ?>
-									</td>
+							<tr id="myList" data-href="http://localhost/asd/crud/view.php?id=<?php echo $row['id'];?>">
+									<td><?php echo $row['id']; ?></td>
                             		<td><?php echo $row['first_name']; ?> </td>
 									<td><?php echo $row['last_name'];  ?></td>
 									<td><?php echo $row['birthdate'];  ?></td>
 									<td><?php echo $row['school'];  ?></td>
 
-									<td>							
+									<td colspan="2">
+									<button type="button" onclick="window.location.href='http://localhost/asd/crud/view.php?id=<?php echo $row['id'];?>'" name="edit" class="btn btn-success viewbtn"><i class="glyphicon glyphicon-user" data-toggle="tooltip" title="View">&#xE254;</i> </a>
 									<button type="button" name="edit" class="btn btn-success editbtn"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i> </a>
 									<button type="button" name="deleterow" class="btn btn-success deleterow"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i> </a>
-                        			</td>
+									</td>
 							</tr>
 							<?php endwhile; ?>
-                        
 						
                 	</tbody>
             </table>
         </div>
     </div>
-
-
-<!-- VIEW Modal HTML -->
-	<div id="viewModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<?php require_once("insert.php")?>
-				<form action="insert.php" method=post>
-					<div class="modal-header">						
-						<h4 class="modal-title">Details</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-					<input type="hidden" id="viewId" name="viewId">
-						<div class="form-group">
-							<label>School Name</label>
-							<input type="text" name="school_name" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Adress</label>
-							<input type="text" name="adress" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Maximum students allowed</label>
-							<input type="number" name="max_students" required>
-						</div>
-						<div class="form-group">
-							<label>Courses yearly fee</label>
-							<input type="number" name="fee" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" name="add_school" value="Add">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
 
 	<!-- ADD Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
@@ -272,7 +220,6 @@
 				return $(this).text();
 			}).get();
 
-			console.log(data);
 
 			$('#update_id').val(data[0]);
 			$('#student_name2').val(data[1]);
@@ -282,7 +229,6 @@
 
 		});
 	});
-
 
 	$(document).ready(function()
 	{
@@ -295,11 +241,37 @@
 				return $(this).text();
 			}).get();
 
-			console.log(data);
-
 			$('#update_id2').val(data[0]);
 		});
 	});
+
+	/*
+	const myList = document.getElementById("myList");
+	myList.addEventListener("click", function (e)
+	{
+		const target = e.target;
+
+		if(target.matches("tr"))
+		{
+			target.style.backgroundColor="red";
+		}
+	}
+	);
+
+	
+	document.addEventListener("DOMContentLoaded", () =>
+	{
+		const rows=document.querySelectorAll("tr[data-href]");
+
+		rows.forEach(row=>{
+			row.addEventListener("click", ()=>
+			{
+				window.location.href = row.dataset.href;
+			})
+		})
+	}
+	
+	);*/
 
 </script>
 	
